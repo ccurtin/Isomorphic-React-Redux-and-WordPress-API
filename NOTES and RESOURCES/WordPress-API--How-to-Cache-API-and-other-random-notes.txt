@@ -1,0 +1,76 @@
+<?php
+/*
+Plugin Name: REST API GET CORS
+Description: Adds CORS headers to allow cross-origin GET requests to WordPress REST API
+Version: 0.0.1
+Plugin URI:  http://joshpress.net/access-control-headers-for-the-wordpress-rest-api/
+Description: A/B testing made easy for WordPress
+Author:    Josh Pollock
+Author URI:  http://JoshPress.ney
+ */
+/**
+ * Copyright 2016 Josh Pollock
+ *
+ * Licensed under the terms of the GNU General Public License version 2 or later
+ */
+/**
+ * Only allow GET requests
+ */
+// add_action( 'rest_api_init', function() {
+
+//  remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+//  add_filter( 'rest_pre_serve_request', function( $value ) {
+//      $origin = get_http_origin();
+//      if ( $origin ) {
+//          header( 'Access-Control-Allow-Origin: ' . "http://localhost:3001" );
+//      }
+//      header( 'Access-Control-Allow-Origin: ' . 'http://localhost:3001' );
+//      header( 'Access-Control-Allow-Methods: GET' );
+//      return $value;
+
+//  });
+// }, 15 );
+?>
+<?php
+function my_rest_prepare_post( $data, $post, $request ) {
+    // add the featured_image URL to the REST API response.
+    $_data = $data->data;
+    $thumbnail_id = get_post_thumbnail_id( $post->ID );
+    $thumbnail = wp_get_attachment_image_src( $thumbnail_id, 'twentyseventeen-featured-image' );
+    $_data['featured_image_thumbnail_url'] = $thumbnail[0];
+
+    // add post categories to REST API response
+    $post_categories = wp_get_post_categories( $post->ID );
+    $cats = array();
+    foreach($post_categories as $c){
+        $cat = get_category( $c );
+        $cat_object = array('name' => $cat->name, 'id' => $cat->cat_ID);
+        // add new array w/ object to the cats key
+        $_data['cats'][] = $cat_object;
+    }
+
+
+    $data->data = $_data;
+
+    return $data;
+}
+add_filter( 'rest_prepare_post', 'my_rest_prepare_post', 10, 3 );
+?>
+<?php
+add_filter( 'rest_cache_headers', function( $headers ) {
+    $headers['Cache-Control'] = 'max-age=3600, public';
+
+    return $headers;
+} );
+// add_filter( 'rest_cache_get_options', function( $options ) {
+//     if ( ! isset( $options['timeout'] ) ) {
+//         $options['timeout'] = array();
+//     }
+
+//     // https://codex.wordpress.org/Transients_API#Using_Time_Constants
+//     $options['timeout']['length'] = 15;
+//     $options['timeout']['period'] = DAY_IN_SECONDS;
+
+//     return $options;
+// } );
+?>

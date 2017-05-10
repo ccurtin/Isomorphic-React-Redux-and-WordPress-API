@@ -1,0 +1,36 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  color: $colors.accent;
+  font: 400 100%/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* stylelint-disable-line value-keyword-case */
+  }
+
+body {
+  margin: 0;
+}
+
+main {
+  padding: 0.5em;
+}
+
+h1 {
+  margin: 0 0 0.75em;
+  color: $colors.accent2;
+  font-size: 2em;
+  font-weight: 700;
+  font: $font--accent--large;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: 80em;
+  margin: 0 auto;
+}

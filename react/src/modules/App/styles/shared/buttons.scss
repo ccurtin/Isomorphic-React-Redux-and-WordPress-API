@@ -1,0 +1,37 @@
+/*
+  BUTTONS.css
+*/
+
+/*
+  create a base
+  BE CAREFUL, because mixins are globally scoped. --
+  best to prefix them w/ current filename as prefix.
+*/
+@define-mixin buttons__base {
+  padding: 1em .5em;
+  color: #FFF;
+  background: $colors.base;
+  border:none;
+  cursor: pointer;
+  outline: none;
+}
+
+/*
+  Example: these are for individual component files:
+    `composes: primary from buttons.css `
+    `composes: secondary from buttons.css `
+*/
+.primary {
+  @mixin buttons__base;
+  font-size: ms(2)em;
+}
+.secondary {
+  @mixin buttons__base;
+  background: $colors.accent;
+  font-size: ms(2)em;
+}
+.tertiary {
+  @mixin buttons__base;
+  background: #FFF;
+  font-size: ms(1)em;
+}

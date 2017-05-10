@@ -1,0 +1,33 @@
+.Home {
+  /* example pulled from "_mixins.scss" */
+  @mixin mixinTest_absoluteOverlay rgba($colors.base, .1), before;
+  display: flex;
+  min-height: 900px;
+
+  .this_is_a_test {
+    font-size-responsive: 20px 100px 480px 1480px;
+  }
+}
+
+.overview {
+  flex-shrink: 0;
+  width: 12em;
+  padding: 0.5em;
+  padding: 0.5em;
+}
+
+.article {
+  padding: 0.5em;
+}
+
+.btn {
+  composes: primary from "_shared/buttons";
+}
+
+.btn2 {
+  composes: secondary from "_shared/buttons";
+}
+
+.btn3 {
+  composes: tertiary from "_shared/buttons";
+}

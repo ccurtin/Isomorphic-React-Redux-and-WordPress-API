@@ -1,0 +1,41 @@
+/*
+  Define Your Mixins Here - use anywhere.
+
+  A couple example use-cases.
+*/
+
+
+
+  /* creates a full-width/height container */
+  @define-mixin mixinTest_absoluteContainer {
+    position: absolute;
+    height:100%;
+    width:100%;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+  }
+  /* creates a full-width/height overlay on an item */
+  @define-mixin mixinTest_absoluteOverlay $background: rgba(0,0,0,.5), $pseudo_placement: null {
+    background: $background;
+    @if $pseudo_placement == null {
+      @mixin mixinTest_absoluteContainer
+    }
+    @if $pseudo_placement == before {
+      &:before {
+        content: "";
+        @mixin mixinTest_absoluteContainer
+      }
+    }
+    @if $pseudo_placement == after {
+      &:after {
+        content: "";
+        @mixin mixinTest_absoluteContainer
+      }
+    }
+  }
+
+  @define-mixin gradient_1 {
+    background-image: linear-gradient(100deg, rgba(49, 27, 146, 0.65) 35%, rgba(125, 38, 205, 0.74));
+  }

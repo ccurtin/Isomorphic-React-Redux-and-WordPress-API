@@ -1,0 +1,11 @@
+/*
+  these are all global styles IF needed (but TRY not to use this :) )
+*/
+:global {
+  #app {
+  }
+  .bodywrapper-blog {
+    color: $colors.accent;
+    background: $colors.base;
+  }
+}

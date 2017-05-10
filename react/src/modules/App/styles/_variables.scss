@@ -1,0 +1,31 @@
+/*
+
+   - Use these variables in ANY of your CSS.
+   - use the other file "_variables.js" if you want to use an
+    object-oriented approach and also share variables between JS && CSS.
+/*
+
+/*
+  Define ModularScale bases && ratios.
+*/
+:root {
+  --ms-bases: 1, .33; /*base 1, and perfect fourth*/
+  --ms-ratios: 1.61803398875; /* golden ratio */
+}
+
+$branding--color--base: #0583F2;
+$branding--color--accent: #F2E085;
+$branding--color--accent2: #75BFB8;
+
+$font--base--large:  ms(4)rem "Roboto";
+$font--accent--large: ms(4)rem "Roboto Slab";
+
+$font--base--medium: ms(3)rem "Roboto";
+$font--accent--medium: ms(3)rem "Roboto Slab";
+
+$font--base--small: ms(2)rem "Roboto";
+$font--accent--small: ms(2)rem "Roboto Slab";
+
+h1{
+  font: $font--base--large
+}

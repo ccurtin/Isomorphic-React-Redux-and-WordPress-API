@@ -1,0 +1,64 @@
+# IMPORTANT: YOU MUST SSH INTO VAGRANT TO RUN WORDMOVE COMMANDS SO IT CONNECTS WITH THE CORRECT LOCAL MySQL SERVER.
+
+local:
+  vhost: "http://YOUR_LOCAL_HOSTNAME.dev"
+  wordpress_path: "/var/www/wordpress/" # use an absolute path here via Vagrant SSH, NOT your local computer host.
+
+  database:
+    name: "wordpress"
+    user: "wordpress"
+    password: "wordpress"
+    host: "localhost"
+
+production:
+  vhost: "http://REMOTE_SERVER.com"
+  wordpress_path: "/public_html/" # use an absolute path here
+
+  database:
+    name: "DATABASE_NAME"
+    user: "DATABASE_USER"
+    password: "DATABASE_PASSWORD"
+    host: "localhost"
+    # port: "3308" # Use just in case you have exotic server config
+    # mysqldump_options: "--max_allowed_packet=1G" # Only available if using SSH
+
+  exclude:
+    - ".git/"
+    - ".gitignore"
+    - ".sass-cache/"
+    - "node_modules/"
+    - "bin/"
+    - "tmp/*"
+    - "Gemfile*"
+    - "Movefile"
+    - "wp-config.php"
+    - "wp-content/*.sql"
+
+  # paths: # you can customize wordpress internal paths
+  #   wp_content: "wp-content"
+  #   uploads: "wp-content/uploads"
+  #   plugins: "wp-content/plugins"
+  #   mu_plugins: "wp-content/mu-plugins"
+  #   themes: "wp-content/themes"
+  #   languages: "wp-content/languages"
+
+  # ssh:
+  #   host: "host"
+  #   user: "user"
+  #   password: "password" # password is optional, will use public keys if available.
+  #   port: 22 # Port is optional
+  #   rsync_options: "--verbose" # Additional rsync options, optional
+  #   gateway: # Gateway is optional
+  #     host: "host"
+  #     user: "user"
+  #     password: "password" # password is optional, will use public keys if available.
+
+  ftp:
+    host: "YOUR_REMOTE_HOSTNAME"
+    user: "YOUR_REMOTE_USERNAME"
+    password: "YOUR_REMOTE_PASSWORD"
+    passive: true
+    scheme: "ftp" # default "ftp"
+
+# staging: # multiple environments can be specified
+#   [...]
