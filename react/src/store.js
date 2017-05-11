@@ -1,7 +1,7 @@
 import { compose, applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 
-import reducer from './reducer'
+import rootReducer from './reducer'
 
 const composedStore = compose(
   applyMiddleware(thunk),
@@ -9,7 +9,21 @@ const composedStore = compose(
 )(createStore)
 
 const configureStore = (initialState: ?Object) => {
-  const store = composedStore(reducer, initialState)
+  /*
+    - ./reducer.js contains the root reducer that holds the keys below
+    - using the initialState here is completely optional but will take precedence
+        over reducer defined states. You should be defining the state(s) if your reducers(redux.js files)
+  */
+  if (!initialState) {
+    initialState = {
+      blog: {
+        article: null,
+        articles: []
+      }
+    }
+  }
+
+  const store = composedStore(rootReducer, initialState)
 
   if (module.hot) {
     module.hot.accept('./reducer', () => {

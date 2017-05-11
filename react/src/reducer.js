@@ -2,8 +2,8 @@ import { combineReducers } from 'redux'
 
 import { reducer as blog } from './modules/Blog'
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   blog
 })
 
-export default reducer
+export default rootReducer

@@ -12,7 +12,7 @@ import styles from './Blog.scss'
 export const Blog = (props: Object) => {
 
   const { children, articles } = props
-
+  console.log( this );
   return (
     <div className={ styles.Blog }>
 
@@ -26,7 +26,8 @@ export const Blog = (props: Object) => {
       <aside className={ styles.overview }>
         <nav>
           <ul>
-            { articles.map(({ slug, title }) => (
+            {/* should be running a check against data-type in case it ever is NOT an Array */}
+            { Array.isArray(articles) && articles.map(({ slug, title }) => (
               <li key={ slug }>
                 <Link to={ `/blog/${ slug }` }>{ title }</Link>
               </li>
